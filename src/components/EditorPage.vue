@@ -202,13 +202,12 @@
 import { ref, computed, watch, onMounted } from "vue";
 import { useDataStore } from "../store/data";
 import { formThemes } from "../themes/formThemes";
-import LogoSettings from "../components/editor/LogoSettings.vue";
-import ButtonSettings from "../components/editor/ButtonSettings.vue";
-import FormSettings from "../components/editor/FormSettings.vue";
-import LabelSettings from "../components/editor/LabelSettings.vue";
-import InputSettings from "../components/editor/InputSettings.vue";
-import HeaderSettings from "../components/editor/HeaderSettings.vue";
-import Layoutsettings from "../components/Editor/Layoutsettings.vue";
+import LogoSettings from "../components/Editor/LogoSettings.vue";
+import ButtonSettings from "../components/Editor/ButtonSettings.vue";
+import FormSettings from "../components/Editor/FormSettings.vue";
+import LabelSettings from "../components/Editor/LabelSettings.vue";
+import InputSettings from "../components/Editor/InputSettings.vue";
+import HeaderSettings from "../components/Editor/HeaderSettings.vue";
 /* ================= STORE ================= */
 const store = useDataStore();
 const previewDevice = ref("desktop");
