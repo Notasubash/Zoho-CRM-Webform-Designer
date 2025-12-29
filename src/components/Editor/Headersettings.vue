@@ -377,31 +377,6 @@
             </p>
           </div>
         </div>
-
-        <!-- Preview -->
-        <div class="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-          <h3 class="text-xs font-semibold text-gray-500 uppercase mb-3">
-            Preview
-          </h3>
-          <div 
-            class="p-4 rounded-lg"
-            :style="previewBackgroundStyle"
-          >
-            <div :style="headerStyle">
-              {{ headerConfig.headerText || 'Contact Us' }}
-            </div>
-            <div 
-              v-if="headerConfig.subheaderEnabled && headerConfig.subheaderText"
-              :style="subheaderStyle"
-            >
-              {{ headerConfig.subheaderText }}
-            </div>
-          </div>
-          <p class="text-xs text-gray-500 mt-2">
-            <i class="fa fa-info-circle"></i>
-            This shows how your header will appear in the form
-          </p>
-        </div>
       </template>
 
       <!-- Message when header is disabled -->

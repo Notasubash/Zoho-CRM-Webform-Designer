@@ -106,39 +106,6 @@
           Color of the asterisk (*) for required fields
         </p>
       </div>
-
-      <!-- Preview -->
-      <div class="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <h3 class="text-xs font-semibold text-gray-500 uppercase mb-3">
-          Preview
-        </h3>
-        <div class="bg-white p-4 rounded-lg">
-          <div class="flex items-center gap-3">
-            <label 
-              class="block"
-              :style="{ 
-                color: labelConfig.textColor, 
-                fontSize: `${labelConfig.fontSize}px`,
-                fontWeight: labelConfig.fontWeight,
-                width: `${labelConfig.labelWidth}%`
-              }"
-            >
-              First Name
-              <span :style="{ color: labelConfig.requiredColor }">*</span>
-            </label>
-            <input
-              type="text"
-              disabled
-              placeholder="Enter first name"
-              class="flex-1 px-3 py-2 border border-gray-300 rounded text-sm bg-gray-50"
-            />
-          </div>
-        </div>
-        <p class="text-xs text-gray-500 mt-2">
-          <i class="fa fa-info-circle"></i>
-          This shows how labels will appear in your form
-        </p>
-      </div>
     </div>
   </div>
 </template>

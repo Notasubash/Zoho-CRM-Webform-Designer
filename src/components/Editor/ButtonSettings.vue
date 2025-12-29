@@ -262,41 +262,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Hover Effect -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          Hover Effect
-        </label>
-        <select
-          v-model="currentConfig.hoverEffect"
-          class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm
-                 focus:ring-2 focus:ring-green-500 focus:border-transparent"
-        >
-          <option value="none">None</option>
-          <option value="darken">Darken</option>
-          <option value="lighten">Lighten</option>
-          <option value="scale">Scale Up</option>
-          <option value="shadow">Add Shadow</option>
-        </select>
-      </div>
-
-      <!-- Preview -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          Preview
-        </label>
-        <div class="p-4 bg-gray-100 rounded-lg flex justify-center">
-          <button
-            :style="previewStyle"
-            class="transition-all duration-200"
-            @mouseenter="isHovered = true"
-            @mouseleave="isHovered = false"
-          >
-            {{ currentConfig.label || (selectedButton === 'submit' ? 'Submit' : 'Reset') }}
-          </button>
-        </div>
-      </div>
     </div>
   </div>
 </template>

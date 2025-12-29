@@ -253,37 +253,6 @@
           <option value="'Fira Code', monospace">Fira Code</option>
         </select>
       </div>
-
-      <!-- Preview -->
-      <div class="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <h3 class="text-xs font-semibold text-gray-500 uppercase mb-3">
-          Preview
-        </h3>
-        <div 
-          class="p-4"
-          :style="{
-            background: formConfig.backgroundType === 'solid' 
-              ? formConfig.backgroundColor 
-              : `linear-gradient(${formConfig.gradientAngle}deg, ${formConfig.gradientFrom}, ${formConfig.gradientTo})`,
-            borderRadius: `${formConfig.borderRadius}px`,
-            border: `${formConfig.borderWidth}px solid ${formConfig.borderColor}`,
-            boxShadow: getShadowValue(formConfig.shadow),
-            fontFamily: formConfig.fontFamily,
-            padding: `${formConfig.padding}px`
-          }"
-        >
-          <div class="text-sm text-gray-700" :style="{ marginBottom: `${formConfig.rowSpacing}px` }">
-            Form Row 1
-          </div>
-          <div class="text-sm text-gray-700">
-            Form Row 2
-          </div>
-        </div>
-        <p class="text-xs text-gray-500 mt-2">
-          <i class="fa fa-info-circle"></i>
-          This shows how your form container will appear
-        </p>
-      </div>
     </div>
   </div>
 </template>

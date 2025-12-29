@@ -194,60 +194,6 @@
           Border color when input is focused/active
         </p>
       </div>
-
-      <!-- Preview -->
-      <div class="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <h3 class="text-xs font-semibold text-gray-500 uppercase mb-3">
-          Preview
-        </h3>
-        <div class="space-y-3">
-          <!-- Text Input -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              Company Name
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your company name"
-              :style="inputStyle"
-              class="transition-colors duration-200"
-              @focus="showFocusState = true"
-              @blur="showFocusState = false"
-            />
-          </div>
-
-          <!-- Email Input -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              Email Address
-            </label>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              :style="inputStyle"
-              class="transition-colors duration-200"
-            />
-          </div>
-
-          <!-- Textarea -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              Message
-            </label>
-            <textarea
-              placeholder="Type your message here..."
-              :style="inputStyle"
-              class="transition-colors duration-200"
-              rows="3"
-            ></textarea>
-          </div>
-
-          <p class="text-xs text-gray-500 mt-2">
-            <i class="fa fa-info-circle"></i>
-            Click on an input to see the focus state
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </template>
