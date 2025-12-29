@@ -129,7 +129,8 @@ export const formThemes = {
   color: #f8fafc !important;
   font-size: 22px !important;
   font-weight: 600 !important;
-  margin-bottom: 20px !important;
+    margin: -30px -30px 24px -30px !important;
+
 }
 
 /* FORM WRAPPER */
@@ -150,7 +151,7 @@ export const formThemes = {
 
 /* LABELS */
 #crmWebToEntityForm.zd-form label {
-  color: #e5e7eb !important;
+  color: #f8f8fc !important;
 }
 
 /* INPUTS */

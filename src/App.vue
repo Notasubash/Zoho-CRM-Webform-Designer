@@ -2,7 +2,8 @@
 import HomePage from './components/HomePage.vue';
 import ThemePage from './components/ThemePage.vue';
 import EditorPage from './components/EditorPage.vue';
-import {useDataStore} from './store/data.js';
+import FinalPage from './components/FinalPage.vue';
+import { useDataStore } from './store/data.js';
 
 const data = useDataStore();
 </script>
@@ -11,6 +12,7 @@ const data = useDataStore();
   <HomePage v-if="data.currentPage === 'home'" />
   <ThemePage v-else-if="data.currentPage === 'theme'" />
   <EditorPage v-else-if="data.currentPage === 'editor'" />
+  <FinalPage v-else-if="data.currentPage === 'final'" />
 </template>
 
 <style scoped>

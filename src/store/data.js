@@ -4,6 +4,7 @@ import { defineStore } from "pinia";
 export const useDataStore = defineStore("data", () => {
   const currentPage = ref("home");
   const rawHTML = ref("");
+  const finalHTML = ref("");
   const selectedTheme = ref(null);
   const editorMode = ref("view");
 
@@ -24,19 +25,19 @@ export const useDataStore = defineStore("data", () => {
     backgroundColor: "",
     gradientFrom: "",
     gradientTo: "",
-    gradientAngle: 0,
+    gradientAngle: 135,
     textColor: "",
-    fontSize: null,
+    fontSize: 22,
     fontWeight: "",
-    fontFamily: "'",
-    padding: null,
+    fontFamily: "",
+    padding: 40,
     subheaderEnabled: false,
     subheaderText: "",
-    subheaderTextColor: "#",
-    subheaderFontSize: null,
+    subheaderTextColor: "",
+    subheaderFontSize: 14,
     subheaderFontWeight: "",
-    subheaderFontFamily: "'",
-    subheaderGap: null,
+    subheaderFontFamily: "",
+    subheaderGap: 8,
   });
 
 
@@ -58,7 +59,7 @@ export const useDataStore = defineStore("data", () => {
 
   // Label configuration
   const labelConfig = reactive({
-    textColor: "#374151",
+    textColor: "",
     fontSize: 14,
     fontWeight: "500",
     requiredColor: "#ef4444",
@@ -456,10 +457,10 @@ export const useDataStore = defineStore("data", () => {
       'tech-dark': {
         backgroundType: 'solid',
         backgroundColor: '#020617',
-        textColor: '#f8fafc',
+        textColor: '#ffffff',
         fontSize: 22,
         fontWeight: '600',
-        padding: 20,
+        padding: 16,
       },
       'corporate-professional': {
         backgroundType: 'solid',
@@ -725,6 +726,7 @@ export const useDataStore = defineStore("data", () => {
         borderRadius: 4,
         borderColor: '#475569',
         borderWidth: 1,
+        textColor: '#ffffff',
         shadow: 'xl',
         fontFamily: "'Courier New', monospace",
       },
@@ -804,6 +806,7 @@ export const useDataStore = defineStore("data", () => {
   return {
     currentPage,
     rawHTML,
+    finalHTML,
     selectedTheme,
     editorMode,
     logoConfig,

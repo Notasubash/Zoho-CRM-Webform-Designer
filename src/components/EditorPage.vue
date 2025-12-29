@@ -47,11 +47,12 @@
         <div class="h-8 w-px bg-gray-300"></div>
 
         <!-- Export -->
-        <button @click="exportHTML"
+        <button @click="generateCode"
           class="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition flex items-center gap-2">
-          <i class="fa fa-download"></i>
-          Export HTML
+          <i class="fa fa-code"></i>
+          Generate Code
         </button>
+
       </div>
     </header>
 
@@ -754,7 +755,7 @@ function injectFormStyles(html) {
   const f = store.formConfig;
 
   // Themes with extended headers (negative margin headers)
-  const themesWithExtendedHeaders = ['bold-gradient', 'nature-organic', 'corporate-professional'];
+  const themesWithExtendedHeaders = ['bold-gradient', 'nature-organic', 'corporate-professional', 'tech-dark'];
   const hasExtendedHeader = themesWithExtendedHeaders.includes(store.selectedTheme);
 
   let backgroundCSS = "";
@@ -1153,6 +1154,7 @@ ${selector} {
   transition: all 0.2s ease !important;
   cursor: pointer !important;
   box-sizing: border-box !important;
+  outline: none !important;
   display: inline-block !important;
 }
 `;
@@ -1263,16 +1265,24 @@ function enterCustomizeMode() {
 
 function goBack() {
   activeSection.value = null;
-  store.goTo("theme");
+  
+  // Confirm if user wants to go back and lose changes
+  if (store.history.length > 0) {
+    if (confirm('Going back will reset all your customizations. Are you sure?')) {
+      store.goTo("theme");
+    }
+  } else {
+    store.goTo("theme");
+  }
 }
 
-function exportHTML() {
-  const blob = new Blob([previewHTML.value], { type: "text/html" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = `zoho-form-${store.selectedTheme || "custom"}.html`;
-  a.click();
+function generateCode() {
+  // Store the final HTML in the store
+  store.finalHTML = previewHTML.value;
+  // Navigate to final page
+  store.goTo("final");
 }
+
 
 function deviceBtnClass(type) {
   return [
