@@ -205,9 +205,9 @@ import { formThemes } from "../themes/formThemes";
 import LogoSettings from "../components/Editor/LogoSettings.vue";
 import ButtonSettings from "../components/Editor/ButtonSettings.vue";
 import FormSettings from "../components/Editor/Formsettings.vue";
-import LabelSettings from "../components/Editor/LabelSettings.vue";
-import InputSettings from "../components/Editor/InputSettings.vue";
-import HeaderSettings from "../components/Editor/HeaderSettings.vue";
+import LabelSettings from "../components/Editor/Labelsettings.vue";
+import InputSettings from "../components/Editor/Inputsettings.vue";
+import HeaderSettings from "../components/Editor/Headersettings.vue";
 /* ================= STORE ================= */
 const store = useDataStore();
 const previewDevice = ref("desktop");
