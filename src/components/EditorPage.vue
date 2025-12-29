@@ -204,7 +204,7 @@ import { useDataStore } from "../store/data";
 import { formThemes } from "../themes/formThemes";
 import LogoSettings from "../components/Editor/LogoSettings.vue";
 import ButtonSettings from "../components/Editor/ButtonSettings.vue";
-import FormSettings from "../components/Editor/FormSettings.vue";
+import FormSettings from "../components/Editor/Formsettings.vue";
 import LabelSettings from "../components/Editor/LabelSettings.vue";
 import InputSettings from "../components/Editor/InputSettings.vue";
 import HeaderSettings from "../components/Editor/HeaderSettings.vue";
