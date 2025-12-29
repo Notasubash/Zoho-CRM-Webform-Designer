@@ -13,7 +13,7 @@
     </div>
 
     <!-- Help Button -->
-    <a href="https://help.zoho.com/portal/en/kb/crm/connect-with-customers/webforms/articles/web-forms-introduction">
+    <a href="https://help.zoho.com/portal/en/kb/crm/connect-with-customers/webforms/articles/web-forms-introduction" target="_blank">
       <button class="flex items-center gap-2 px-1 md:px-2 md:py-2 py-1 rounded-full
            border border-gray-300 text-sm text-gray-800
            hover:bg-gray-100 transition">
@@ -57,7 +57,7 @@
         </div>
 
         <!-- Help link -->
-        <a href="https://help.zoho.com/portal/en/kb/crm/connect-with-customers/webforms/articles/set-up-web-forms" class="flex items-center gap-2 text-sm text-green-600 hover:underline">
+        <a href="https://help.zoho.com/portal/en/kb/crm/connect-with-customers/webforms/articles/set-up-web-forms" target="_blank" class="flex items-center gap-2 text-sm text-green-600 hover:underline">
           <i class="fa fa-external-link-alt text-xs"></i>
           Where do I find this code?
         </a>
