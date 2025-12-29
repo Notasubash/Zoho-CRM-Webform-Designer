@@ -13,20 +13,22 @@
     </div>
 
     <!-- Help Button -->
-    <button class="flex items-center gap-2 px-1 md:px-2 md:py-2 py-1 rounded-full
+    <a href="https://help.zoho.com/portal/en/kb/crm/connect-with-customers/webforms/articles/web-forms-introduction">
+      <button class="flex items-center gap-2 px-1 md:px-2 md:py-2 py-1 rounded-full
            border border-gray-300 text-sm text-gray-800
            hover:bg-gray-100 transition">
-      <!-- Icon always visible -->
-      <span class="w-8 h-8 md:w-5 md:h-5 flex items-center justify-center
+        <!-- Icon always visible -->
+        <span class="w-8 h-8 md:w-5 md:h-5 flex items-center justify-center
              rounded-full text-xs">
-        <i class="fa fa-question"></i>
-      </span>
+          <i class="fa fa-question"></i>
+        </span>
 
-      <!-- Text only on desktop -->
-      <span class="hidden md:inline">
-        Help
-      </span>
-    </button>
+        <!-- Text only on desktop -->
+        <span class="hidden md:inline">
+          Help
+        </span>
+      </button>
+    </a>
   </header>
 
   <!-- Main Section -->
@@ -55,7 +57,7 @@
         </div>
 
         <!-- Help link -->
-        <a href="#" class="flex items-center gap-2 text-sm text-green-600 hover:underline">
+        <a href="https://help.zoho.com/portal/en/kb/crm/connect-with-customers/webforms/articles/set-up-web-forms" class="flex items-center gap-2 text-sm text-green-600 hover:underline">
           <i class="fa fa-external-link-alt text-xs"></i>
           Where do I find this code?
         </a>
@@ -74,10 +76,7 @@
 
         <!-- Textarea -->
         <div class="mt-4 md:mt-6">
-          <textarea 
-            v-model="htmlInput"
-            rows="8" 
-            placeholder="<!-- Paste your full Zoho CRM webform code here -->" 
+          <textarea v-model="htmlInput" rows="8" placeholder="<!-- Paste your full Zoho CRM webform code here -->"
             class="w-full rounded-lg border-2 border-green-500
                    p-3 md:p-4 text-sm font-mono text-gray-800
                    placeholder-gray-400 focus:outline-none
@@ -99,16 +98,12 @@
           </div>
 
           <!-- CTA Button -->
-          <button 
-            @click="goToThemes"
-            :disabled="!htmlInput.trim()"
-            :class="[
-              'w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold transition',
-              htmlInput.trim() 
-                ? 'bg-green-600 text-white hover:bg-green-700' 
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            ]"
-          >
+          <button @click="goToThemes" :disabled="!htmlInput.trim()" :class="[
+            'w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold transition',
+            htmlInput.trim()
+              ? 'bg-green-600 text-white hover:bg-green-700'
+              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+          ]">
             Next
             <i class="fa fa-arrow-right"></i>
           </button>

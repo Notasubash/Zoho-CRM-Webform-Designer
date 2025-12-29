@@ -182,8 +182,8 @@
 
               <p class="text-sm text-gray-600 mt-4">
                 Need help?
-                <a href="#" class="text-green-600 hover:text-green-700 font-medium ml-1">
-                  Read integration guide
+                <a href="https://help.zoho.com/portal/en/kb/crm/connect-with-customers/webforms/articles/web-forms-introduction" class="text-green-600 hover:text-green-700 font-medium ml-1">
+                  Read Zoho CRM Webform Form guide
                 </a>
               </p>
             </div>
