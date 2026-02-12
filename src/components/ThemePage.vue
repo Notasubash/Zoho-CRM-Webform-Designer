@@ -202,12 +202,18 @@ function goBack() {
   dataStore.goTo('home');
 }
 
+  // Watch for theme changes
 function selectTheme(themeName) {
   dataStore.selectedTheme = themeName;
-  dataStore.editorMode = "view";   // 👈 important
+  dataStore.editorMode = "view";
+  
+  // ⭐ CRITICAL: Initialize header styles immediately when theme is selected
+  if (themeName !== 'custom') {
+    dataStore.initializeHeaderStylesFromTheme(themeName);
+  }
+  
   dataStore.goTo("editor");
 }
-
 function customizeManually() {
   dataStore.selectedTheme = "custom";
   dataStore.editorMode = "customize"; // 👈 important

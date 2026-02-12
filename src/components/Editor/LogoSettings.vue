@@ -5,37 +5,25 @@
       Logo Settings
     </h2>
 
-    <!-- Enable Logo -->
-    <label class="flex items-center gap-3 mb-6 cursor-pointer">
+    <!-- Logo URL (Always visible) -->
+    <div class="mb-6">
+      <label class="block text-sm font-medium text-gray-700 mb-2">
+        Logo URL
+      </label>
       <input
-        type="checkbox"
-        v-model="logo.enabled"
-        class="w-4 h-4 accent-green-600"
+        v-model="logo.url"
+        type="text"
+        placeholder="https://example.com/logo.png"
+        class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm
+               focus:ring-2 focus:ring-green-500 focus:border-transparent"
       />
-      <span class="text-sm font-medium text-gray-800">
-        Show Logo
-      </span>
-    </label>
+      <p class="text-xs text-gray-500 mt-1">
+        Enter a logo URL to display it on your form
+      </p>
+    </div>
 
-    <!-- Logo Options -->
-    <div v-if="logo.enabled" class="space-y-6">
-      <!-- URL -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          Logo URL
-        </label>
-        <input
-          v-model="logo.url"
-          type="text"
-          placeholder="https://example.com/logo.png"
-          class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm
-                 focus:ring-2 focus:ring-green-500 focus:border-transparent"
-        />
-        <p class="text-xs text-gray-500 mt-1">
-          Enter a URL or leave blank for placeholder
-        </p>
-      </div>
-
+    <!-- Logo Options (Only shown when URL is entered) -->
+    <div v-if="logo.url && logo.url.trim()" class="space-y-6">
       <!-- Size -->
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-2">

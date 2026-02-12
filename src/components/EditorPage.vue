@@ -33,6 +33,15 @@
 
         <div class="h-8 w-px bg-gray-300"></div>
 
+        <!-- ⭐ NEW: Theme Switcher Button -->
+        <button @click="showThemeSwitcher = true" 
+          class="px-4 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-lg font-medium transition flex items-center gap-2">
+          <i class="fa fa-palette"></i>
+          Change Theme
+        </button>
+
+        <div class="h-8 w-px bg-gray-300"></div>
+
         <!-- History Button -->
         <button @click="showHistory = !showHistory" :class="[
           'px-4 py-2 rounded-lg font-medium transition flex items-center gap-2',
@@ -55,6 +64,7 @@
 
       </div>
     </header>
+
 
     <!-- ================= BODY ================= -->
     <div class="flex-1 flex overflow-hidden">
@@ -104,18 +114,8 @@
               ? 'w-full max-w-4xl'
               : 'w-full max-w-sm'
           ]">
-            <!-- Window Bar -->
-            <div class="bg-gray-50 px-4 py-3 border-b rounded-t-2xl flex items-center">
-              <div class="flex gap-2">
-                <span class="w-3 h-3 rounded-full bg-red-400"></span>
-                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
-                <span class="w-3 h-3 rounded-full bg-green-400"></span>
-              </div>
-              <span class="ml-auto text-xs text-gray-500">Live Preview</span>
-            </div>
-
             <!-- Preview Content -->
-            <div class="p-8 bg-gray-50">
+            <div class="p-8 bg-gray-100">
               <div v-html="previewHTML" class="mx-auto"></div>
             </div>
           </div>
@@ -196,6 +196,194 @@
         </div>
       </aside>
     </div>
+
+        <div v-if="showThemeSwitcher" 
+      class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      @click.self="showThemeSwitcher = false">
+      <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[80vh] overflow-y-auto"
+        @click.stop>
+        <!-- Popup Header -->
+        <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between rounded-t-2xl">
+          <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+            <i class="fa fa-palette text-green-600"></i>
+            Change Theme
+          </h2>
+          <button @click="showThemeSwitcher = false" 
+            class="w-8 h-8 rounded-lg hover:bg-gray-100 flex items-center justify-center transition">
+            <i class="fa fa-times text-gray-500"></i>
+          </button>
+        </div>
+
+        <!-- Theme Grid -->
+        <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Modern Minimal -->
+          <button @click="switchTheme('modern-minimal')"
+            :class="[
+              'text-left border-2 rounded-xl overflow-hidden transition-all hover:shadow-lg',
+              store.selectedTheme === 'modern-minimal' 
+                ? 'border-green-500 bg-green-50' 
+                : 'border-gray-200 hover:border-green-300'
+            ]">
+            <div class="aspect-video bg-gradient-to-br from-slate-100 to-slate-200 p-4 flex items-center justify-center relative overflow-hidden">
+              <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-2 left-2 w-16 h-16 bg-slate-400 rounded-full"></div>
+                <div class="absolute bottom-2 right-2 w-12 h-12 bg-slate-500 rounded-full"></div>
+              </div>
+              <div class="relative bg-white rounded-lg shadow-lg p-3 w-full max-w-[200px]">
+                <div class="h-2 bg-slate-200 rounded mb-2 w-3/4"></div>
+                <div class="h-1.5 bg-slate-100 rounded mb-1.5"></div>
+                <div class="h-1.5 bg-slate-100 rounded mb-3 w-5/6"></div>
+                <div class="h-6 bg-slate-800 rounded"></div>
+              </div>
+              <div v-if="store.selectedTheme === 'modern-minimal'" 
+                class="absolute top-2 right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                <i class="fa fa-check text-white text-xs"></i>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-gray-900 mb-1">Modern Minimal</h3>
+              <p class="text-xs text-gray-600">Clean and professional</p>
+            </div>
+          </button>
+
+          <!-- Bold Gradient -->
+          <button @click="switchTheme('bold-gradient')"
+            :class="[
+              'text-left border-2 rounded-xl overflow-hidden transition-all hover:shadow-lg',
+              store.selectedTheme === 'bold-gradient' 
+                ? 'border-purple-500 bg-purple-50' 
+                : 'border-gray-200 hover:border-purple-300'
+            ]">
+            <div class="aspect-video bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 p-4 flex items-center justify-center relative">
+              <div class="relative bg-white rounded-xl shadow-2xl p-3 w-full max-w-[200px]">
+                <div class="h-2 bg-gradient-to-r from-purple-400 to-pink-400 rounded mb-2 w-3/4"></div>
+                <div class="h-1.5 bg-gray-100 rounded mb-1.5"></div>
+                <div class="h-1.5 bg-gray-100 rounded mb-3 w-5/6"></div>
+                <div class="h-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded"></div>
+              </div>
+              <div v-if="store.selectedTheme === 'bold-gradient'" 
+                class="absolute top-2 right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                <i class="fa fa-check text-purple-600 text-xs"></i>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-gray-900 mb-1">Bold Gradient</h3>
+              <p class="text-xs text-gray-600">Vibrant and eye-catching</p>
+            </div>
+          </button>
+
+          <!-- Nature Organic -->
+          <button @click="switchTheme('nature-organic')"
+            :class="[
+              'text-left border-2 rounded-xl overflow-hidden transition-all hover:shadow-lg',
+              store.selectedTheme === 'nature-organic' 
+                ? 'border-emerald-500 bg-emerald-50' 
+                : 'border-gray-200 hover:border-emerald-300'
+            ]">
+            <div class="aspect-video bg-gradient-to-br from-emerald-200 via-teal-100 to-cyan-200 p-4 flex items-center justify-center relative overflow-hidden">
+              <div class="absolute inset-0 opacity-20">
+                <div class="absolute top-1 left-4 w-8 h-8 bg-emerald-300 rounded-full"></div>
+                <div class="absolute bottom-4 right-2 w-10 h-10 bg-teal-300 rounded-full"></div>
+              </div>
+              <div class="relative bg-white rounded-2xl shadow-lg p-3 w-full max-w-[200px]">
+                <div class="h-2 bg-emerald-300 rounded-full mb-2 w-3/4"></div>
+                <div class="h-1.5 bg-emerald-100 rounded-full mb-1.5"></div>
+                <div class="h-1.5 bg-emerald-100 rounded-full mb-3 w-5/6"></div>
+                <div class="h-6 bg-emerald-500 rounded-full"></div>
+              </div>
+              <div v-if="store.selectedTheme === 'nature-organic'" 
+                class="absolute top-2 right-2 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center">
+                <i class="fa fa-check text-white text-xs"></i>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-gray-900 mb-1">Nature Organic</h3>
+              <p class="text-xs text-gray-600">Warm and welcoming</p>
+            </div>
+          </button>
+
+          <!-- Tech Dark -->
+          <button @click="switchTheme('tech-dark')"
+            :class="[
+              'text-left border-2 rounded-xl overflow-hidden transition-all hover:shadow-lg',
+              store.selectedTheme === 'tech-dark' 
+                ? 'border-blue-500 bg-blue-50' 
+                : 'border-gray-200 hover:border-blue-300'
+            ]">
+            <div class="aspect-video bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 p-4 flex items-center justify-center relative">
+              <div class="relative bg-slate-800 rounded-lg shadow-2xl p-3 w-full max-w-[200px] border border-slate-700">
+                <div class="h-2 bg-blue-500 rounded mb-2 w-3/4"></div>
+                <div class="h-1.5 bg-slate-700 rounded mb-1.5"></div>
+                <div class="h-1.5 bg-slate-700 rounded mb-3 w-5/6"></div>
+                <div class="h-6 bg-blue-600 rounded"></div>
+              </div>
+              <div v-if="store.selectedTheme === 'tech-dark'" 
+                class="absolute top-2 right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                <i class="fa fa-check text-white text-xs"></i>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-gray-900 mb-1">Tech Dark</h3>
+              <p class="text-xs text-gray-600">Modern and sleek</p>
+            </div>
+          </button>
+
+          <!-- Corporate Professional -->
+          <button @click="switchTheme('corporate-professional')"
+            :class="[
+              'text-left border-2 rounded-xl overflow-hidden transition-all hover:shadow-lg',
+              store.selectedTheme === 'corporate-professional' 
+                ? 'border-indigo-500 bg-indigo-50' 
+                : 'border-gray-200 hover:border-indigo-300'
+            ]">
+            <div class="aspect-video bg-gradient-to-br from-indigo-100 to-blue-100 p-4 flex items-center justify-center relative">
+              <div class="absolute top-0 left-0 right-0 h-6 bg-indigo-600 opacity-80"></div>
+              <div class="relative bg-white rounded-lg shadow-lg p-3 w-full max-w-[200px]">
+                <div class="h-2 bg-indigo-600 rounded mb-2 w-3/4"></div>
+                <div class="h-1.5 bg-gray-200 rounded mb-1.5"></div>
+                <div class="h-1.5 bg-gray-200 rounded mb-3 w-5/6"></div>
+                <div class="h-6 bg-indigo-600 rounded"></div>
+              </div>
+              <div v-if="store.selectedTheme === 'corporate-professional'" 
+                class="absolute top-2 right-2 w-6 h-6 bg-indigo-500 rounded-full flex items-center justify-center">
+                <i class="fa fa-check text-white text-xs"></i>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-gray-900 mb-1">Corporate Professional</h3>
+              <p class="text-xs text-gray-600">Traditional business style</p>
+            </div>
+          </button>
+
+          <!-- Custom Theme -->
+          <button @click="switchTheme('custom')"
+            :class="[
+              'text-left border-2 rounded-xl overflow-hidden transition-all hover:shadow-lg',
+              store.selectedTheme === 'custom' 
+                ? 'border-green-500 bg-green-50' 
+                : 'border-gray-200 hover:border-green-300'
+            ]">
+            <div class="aspect-video bg-gradient-to-br from-gray-900 to-gray-800 p-4 flex items-center justify-center relative">
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(16,185,129,0.1),transparent)]"></div>
+              <div class="text-center relative">
+                <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
+                  <i class="fa fa-palette text-white text-2xl"></i>
+                </div>
+              </div>
+              <div v-if="store.selectedTheme === 'custom'" 
+                class="absolute top-2 right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                <i class="fa fa-check text-white text-xs"></i>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-gray-900 mb-1">Custom Design</h3>
+              <p class="text-xs text-gray-600">Full creative control</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -214,6 +402,40 @@ const store = useDataStore();
 const previewDevice = ref("desktop");
 const activeSection = ref(null);
 const showHistory = ref(false);
+const showThemeSwitcher = ref(false);
+
+function switchTheme(themeName) {
+  if (themeName === store.selectedTheme) {
+    showThemeSwitcher.value = false;
+    return;
+  }
+
+  // Confirm theme switch if there are unsaved changes
+  if (store.history.length > 0) {
+    if (!confirm('Switching themes will reset your customizations. Continue?')) {
+      return;
+    }
+  }
+
+  store.selectedTheme = themeName;
+  
+  // Set editor mode based on theme
+  if (themeName === 'custom') {
+    store.editorMode = 'customize';
+  } else {
+    store.editorMode = 'view';
+    // Re-initialize button styles for the new theme
+    setTimeout(() => {
+      store.initializeButtonStylesFromTheme(themeName, previewHTML.value);
+    }, 100);
+  }
+
+  // Clear history when switching themes
+  store.history = [];
+  
+  // Close popup
+  showThemeSwitcher.value = false;
+}
 
 /* ================= INITIALIZATION ================= */
 onMounted(() => {
@@ -306,18 +528,22 @@ function applyThemeToHTML(rawHTML, themeName) {
 }
 
 /* ================= LOGO ================= */
+/* ================= LOGO ================= */
 function injectLogo(html) {
   const logo = store.logoConfig;
 
   const placeholder = "https://dummyimage.com/120x40/22c55e/ffffff&text=Logo";
-  const imgSrc = logo.url?.trim() ? logo.url : placeholder;
+  
+  // ⭐ KEY CHANGE: Check for URL instead of enabled flag
+  const hasLogoUrl = logo.url?.trim();
+  const imgSrc = hasLogoUrl ? logo.url : placeholder;
 
   const isTop = ["TL", "TC", "TR"].includes(logo.position);
 
   /* ===============================
-     REMOVE LOGO WHEN DISABLED
+     REMOVE LOGO WHEN NO URL
      =============================== */
-  if (!logo.enabled) {
+  if (!hasLogoUrl) {
     return html
       .replace(/<div class="zd-logo-container[\s\S]*?<\/div>/g, "");
   }
@@ -481,6 +707,7 @@ function injectLogoStyles(html) {
 }
 
 /* ================= HEADER DETECTION AND INJECTION ================= */
+/* ================= HEADER DETECTION AND INJECTION ================= */
 function detectAndInjectHeader(html) {
   console.log('=== detectAndInjectHeader called ===');
   console.log('headerEnabled:', store.headerConfig.headerEnabled);
@@ -504,6 +731,16 @@ function detectAndInjectHeader(html) {
       );
       return html;
     }
+
+    // ⭐ CRITICAL FIX: Remove ALL inline styles from the header div AND its content
+    html = html.replace(
+      /<div([^>]*class\s*=\s*['"][^'"]*zcwf_title[^'"]*['"])([^>]*?)(?:style\s*=\s*["'][^"']*["'])([^>]*?)>([\s\S]*?)<\/div>/gi,
+      (match, classAttr, beforeStyle, afterStyle, innerContent) => {
+        // Remove inline styles from inner content too
+        const cleanInner = innerContent.replace(/style\s*=\s*["'][^"']*["']/gi, '');
+        return `<div${classAttr}${beforeStyle}${afterStyle}>${cleanInner}</div>`;
+      }
+    );
 
     // User wants header - update the text
     console.log('Updating existing header text to:', headerText);
@@ -550,13 +787,13 @@ function detectAndInjectHeader(html) {
     return html;
   }
 
-  // User wants header - inject it with proper wrapper!
+  // User wants header - inject it with proper wrapper (NO inline styles!)
   console.log('No header DIV but user enabled it - injecting with text:', headerText);
 
-  // ⭐ IMPORTANT: Wrap header in zcwf_row so theme styles apply
+  // ⭐ CRITICAL: No inline styles at all
   const headerHTML = `
 <div class="zcwf_row">
-  <div class="zcwf_title" style="max-width: 600px; color: black; overflow-wrap: break-word; font-size: 22px; padding: 0px 6px 10px; font-weight: bold;">
+  <div class="zcwf_title">
     ${headerText}
   </div>
 </div>`;
@@ -580,11 +817,8 @@ function detectAndInjectHeader(html) {
 
 /* ================= HEADER STYLES ================= */
 function injectHeaderStyles(html) {
-  // Check for actual DIV element
   const hasHeaderDiv = /<div[^>]*class\s*=\s*['"][^'"]*zcwf_title[^'"]*['"][^>]*>/i.test(html);
 
-  // ⭐ IMPORTANT: Apply styles if header is enabled OR exists in HTML
-  // This ensures theme styles apply to injected headers too
   if (!hasHeaderDiv) {
     console.log('No header DIV in HTML - skipping header styles');
     return html;
@@ -600,59 +834,116 @@ function injectHeaderStyles(html) {
     );
   }
 
+  // ⭐ CRITICAL: Remove the JavaScript cleanup script
+  if (html.includes("zd-header-cleanup-script")) {
+    html = html.replace(
+      /<script id="zd-header-cleanup-script">[\s\S]*?<\/script>/g,
+      ""
+    );
+  }
+
   // Remove old subheader elements
   html = html.replace(
     /<div class="zd-subheader"[^>]*>[\s\S]*?<\/div>/g,
     ""
   );
 
+  // ⭐ CRITICAL FIX: Remove ALL inline styles from header div and its children
+  html = html.replace(
+    /<div([^>]*class\s*=\s*['"][^'"]*zcwf_title[^'"]*['"])([^>]*?)(?:style\s*=\s*["'][^"']*["'])([^>]*?)>([\s\S]*?)<\/div>/gi,
+    (match, classAttr, beforeStyle, afterStyle, innerContent) => {
+      // Remove ALL inline styles from inner content recursively
+      const cleanInner = innerContent.replace(/\s*style\s*=\s*["'][^"']*["']/gi, '');
+      return `<div${classAttr}${beforeStyle}${afterStyle}>${cleanInner}</div>`;
+    }
+  );
+
   const h = store.headerConfig;
   const f = store.formConfig;
 
-  // Generate background CSS
+  // Generate background CSS properly
   let backgroundCSS = "";
   if (h.backgroundType === "solid") {
-    backgroundCSS = `background: ${h.backgroundColor} !important;`;
+    backgroundCSS = `
+    background: ${h.backgroundColor} !important;
+    background-color: ${h.backgroundColor} !important;
+    background-image: none !important;`;
   } else if (h.backgroundType === "gradient") {
-    backgroundCSS = `background: linear-gradient(${h.gradientAngle}deg, ${h.gradientFrom}, ${h.gradientTo}) !important;`;
+    backgroundCSS = `
+    background: linear-gradient(${h.gradientAngle}deg, ${h.gradientFrom}, ${h.gradientTo}) !important;
+    background-image: linear-gradient(${h.gradientAngle}deg, ${h.gradientFrom}, ${h.gradientTo}) !important;
+    background-color: transparent !important;`;
   }
 
+  // ⭐ Use CSS only - NO JavaScript
   const css = `
 <style id="zd-header-style">
-/* ================= HEADER STYLES - EXTENDED BACKGROUND ================= */
+/* ================= HEADER STYLES - PURE CSS ================= */
+/* Maximum specificity selectors */
+html body form#crmWebToEntityForm .zcwf_row .zcwf_title[style],
+html body form#crmWebToEntityForm .zcwf_row .zcwf_title,
+html body form#crmWebToEntityForm.zd-form .zcwf_row .zcwf_title,
+form#crmWebToEntityForm .zcwf_row .zcwf_title,
+form#crmWebToEntityForm.zd-form .zcwf_row .zcwf_title,
+form#crmWebToEntityForm .zcwf_title,
+form#crmWebToEntityForm.zd-form .zcwf_title,
 #crmWebToEntityForm .zcwf_title,
-#crmWebToEntityForm.zd-form .zcwf_title {
+#crmWebToEntityForm.zd-form .zcwf_title,
+div[class*="zcwf_title"],
+.zcwf_title {
   ${backgroundCSS}
   color: ${h.textColor} !important;
   font-size: ${h.fontSize}px !important;
   font-weight: ${h.fontWeight} !important;
   font-family: ${h.fontFamily} !important;
   
-  /* Extend header to form edges using negative margins */
   margin-left: -${f.padding}px !important;
   margin-right: -${f.padding}px !important;
   margin-top: -${f.padding}px !important;
   margin-bottom: ${Math.max(20, f.padding * 0.6)}px !important;
   padding: ${h.padding}px ${f.padding}px !important;
   
-  /* Round top corners to match form */
   border-radius: ${f.borderRadius}px ${f.borderRadius}px 0 0 !important;
-  
-  /* Make header full width */
   width: calc(100% + ${f.padding * 2}px) !important;
+  
+  max-width: none !important;
+  overflow-wrap: break-word !important;
+  line-height: 1.4 !important;
 }
 
-/* When subheader exists, make header flex column to stack vertically */
-#crmWebToEntityForm .zcwf_title:has(.zd-subheader),
-#crmWebToEntityForm.zd-form .zcwf_title:has(.zd-subheader) {
+/* Target ALL children and text nodes - exclude only subheader and logo */
+html body form#crmWebToEntityForm .zcwf_title *:not(.zd-subheader):not(.zd-subheader *):not(.zd-logo-container):not(.zd-logo-container *)[style],
+html body form#crmWebToEntityForm .zcwf_title *:not(.zd-subheader):not(.zd-subheader *):not(.zd-logo-container):not(.zd-logo-container *),
+form#crmWebToEntityForm .zcwf_title *:not(.zd-subheader):not(.zd-subheader *):not(.zd-logo-container):not(.zd-logo-container *),
+#crmWebToEntityForm .zcwf_title *:not(.zd-subheader):not(.zd-subheader *):not(.zd-logo-container):not(.zd-logo-container *),
+div[class*="zcwf_title"] *:not(.zd-subheader):not(.zd-subheader *):not(.zd-logo-container):not(.zd-logo-container *),
+.zcwf_title *:not(.zd-subheader):not(.zd-subheader *):not(.zd-logo-container):not(.zd-logo-container *) {
+  color: ${h.textColor} !important;
+  font-size: ${h.fontSize}px !important;
+  font-weight: ${h.fontWeight} !important;
+  font-family: ${h.fontFamily} !important;
+}
+
+/* When subheader exists */
+.zcwf_title:has(.zd-subheader) {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
 }
 
-/* Subheader styles - below the header title */
+/* Subheader styles with maximum specificity */
+html body form#crmWebToEntityForm .zd-subheader[style],
+html body form#crmWebToEntityForm .zd-subheader *[style],
+html body form#crmWebToEntityForm .zd-subheader,
+html body form#crmWebToEntityForm .zd-subheader *,
+form#crmWebToEntityForm .zd-subheader,
+form#crmWebToEntityForm .zd-subheader *,
 #crmWebToEntityForm .zd-subheader,
-#crmWebToEntityForm.zd-form .zd-subheader {
+#crmWebToEntityForm .zd-subheader *,
+div[class*="zd-subheader"],
+div[class*="zd-subheader"] *,
+.zd-subheader,
+.zd-subheader * {
   color: ${h.subheaderTextColor} !important;
   font-size: ${h.subheaderFontSize}px !important;
   font-weight: ${h.subheaderFontWeight} !important;
@@ -660,10 +951,14 @@ function injectHeaderStyles(html) {
   margin-top: ${h.subheaderGap}px !important;
   display: block !important;
   line-height: 1.5 !important;
+  background: none !important;
+  background-image: none !important;
+  padding: 0 !important;
+  border: none !important;
 }
 
-/* If there's a logo with title text, wrap them properly */
-#crmWebToEntityForm .zd-title-content {
+/* Title content wrapper */
+.zd-title-content {
   display: flex;
   align-items: center;
   width: 100%;
@@ -671,15 +966,31 @@ function injectHeaderStyles(html) {
 </style>
 `;
 
-  // Inject styles
-  if (html.includes("</head>")) {
-    html = html.replace("</head>", `${css}</head>`);
-  } else if (html.includes("zoho-designer-theme")) {
+  // ⭐ CRITICAL FIX: Inject styles AFTER theme styles to override them
+  // First, try to inject after theme styles
+  if (html.includes('id="zoho-designer-theme"')) {
     html = html.replace(
       /(<style id="zoho-designer-theme">[\s\S]*?<\/style>)/,
       `$1${css}`
     );
-  } else {
+  }
+  // If no theme styles, try after form styles
+  else if (html.includes('id="zd-form-style"')) {
+    html = html.replace(
+      /(<style id="zd-form-style">[\s\S]*?<\/style>)/,
+      `$1${css}`
+    );
+  }
+  // Otherwise inject before closing head tag
+  else if (html.includes("</head>")) {
+    html = html.replace("</head>", `${css}</head>`);
+  } 
+  // Last resort: before closing body
+  else if (html.includes("</body>")) {
+    html = html.replace("</body>", `${css}</body>`);
+  } 
+  // Final fallback: append to HTML
+  else {
     html = css + html;
   }
 
@@ -714,7 +1025,6 @@ function injectHeaderStyles(html) {
   return html;
 }
 
-
 /* ================= PREVIEW ================= */
 const previewHTML = computed(() => {
   let html =
@@ -734,6 +1044,8 @@ const previewHTML = computed(() => {
   return html;
 });
 
+/* ================= FORM STYLES ================= */
+/* ================= FORM STYLES ================= */
 /* ================= FORM STYLES ================= */
 function injectFormStyles(html) {
   // Remove old form styles
@@ -758,6 +1070,7 @@ function injectFormStyles(html) {
   const themesWithExtendedHeaders = ['bold-gradient', 'nature-organic', 'corporate-professional', 'tech-dark'];
   const hasExtendedHeader = themesWithExtendedHeaders.includes(store.selectedTheme);
 
+  // Generate background CSS properly
   let backgroundCSS = "";
   if (f.backgroundType === "solid") {
     backgroundCSS = `background: ${f.backgroundColor} !important;`;
@@ -777,12 +1090,9 @@ function injectFormStyles(html) {
   // Google Fonts CDN link
   const googleFontsLink = `<link id="zd-google-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600;700&family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Nunito:wght@400;600;700&family=Fira+Code:wght@400;500;600&display=swap">`;
 
-  let css = '';
-
-  if (hasExtendedHeader) {
-    css = `
+  const css = `
 <style id="zd-form-style">
-/* ================= FORM CONTAINER - WITH EXTENDED HEADER ================= */
+/* ================= FORM CONTAINER ================= */
 #crmWebToEntityForm.zd-form,
 #crmWebToEntityForm {
   ${backgroundCSS}
@@ -803,18 +1113,7 @@ function injectFormStyles(html) {
   font-family: ${f.fontFamily} !important;
 }
 
-/* Header extends beyond form padding with negative margins */
-#crmWebToEntityForm.zd-form .zcwf_title {
-  margin-left: -${f.padding}px !important;
-  margin-right: -${f.padding}px !important;
-  margin-top: -${f.padding}px !important;
-  margin-bottom: ${Math.max(20, f.padding * 0.6)}px !important;
-  border-radius: ${f.borderRadius}px ${f.borderRadius}px 0 0 !important;
-  width: calc(100% + ${f.padding * 2}px) !important;
-  font-family: ${f.fontFamily} !important;
-}
-
-/* ⭐ ADD THIS - Row spacing */
+/* Row spacing */
 #crmWebToEntityForm .zcwf_row,
 #crmWebToEntityForm.zd-form .zcwf_row {
   margin: ${f.rowSpacing}px 0px !important;
@@ -824,58 +1123,8 @@ function injectFormStyles(html) {
 #crmWebToEntityForm * {
   box-sizing: border-box;
 }
-
-/* Override any theme-specific form background */
-#crmWebToEntityForm.zd-form {
-  ${backgroundCSS}
-}
 </style>
 `;
-
-    // For themes WITHOUT extended headers (standard padding):
-    css = `
-<style id="zd-form-style">
-/* ================= FORM CONTAINER - STANDARD ================= */
-#crmWebToEntityForm.zd-form,
-#crmWebToEntityForm {
-  ${backgroundCSS}
-  padding: ${f.padding}px !important;
-  border-radius: ${f.borderRadius}px !important;
-  border: ${f.borderWidth}px solid ${f.borderColor} !important;
-  box-shadow: ${shadowMap[f.shadow]} !important;
-  font-family: ${f.fontFamily} !important;
-  margin: 0 auto !important;
-  box-sizing: border-box !important;
-}
-
-/* Apply font family to all child elements with highest priority */
-#crmWebToEntityForm.zd-form,
-#crmWebToEntityForm.zd-form *,
-#crmWebToEntityForm,
-#crmWebToEntityForm * {
-  font-family: ${f.fontFamily} !important;
-}
-
-/* ⭐ ADD THIS - Row spacing */
-#crmWebToEntityForm .zcwf_row,
-#crmWebToEntityForm.zd-form .zcwf_row {
-  margin: ${f.rowSpacing}px 0px !important;
-}
-
-/* Ensure inner content stretches properly */
-#crmWebToEntityForm * {
-  box-sizing: border-box;
-}
-
-/* Override any theme-specific form background */
-#crmWebToEntityForm.zd-form {
-  ${backgroundCSS}
-}
-</style>
-`;
-
-
-  }
 
   // Inject Google Fonts link and CSS
   if (html.includes("</head>")) {
@@ -1063,8 +1312,7 @@ function injectInputStyles(html) {
   border-color: ${i.focusBorderColor} !important;
   outline: none !important;
 }
-</style>
-`;
+</style>`;
 
   // Inject styles before </head> or at appropriate location
   if (html.includes("</head>")) {
@@ -1081,6 +1329,7 @@ function injectInputStyles(html) {
   return html;
 }
 
+/* ================= BUTTON STYLES ================= */
 /* ================= BUTTON STYLES ================= */
 function injectButtonStyles(html) {
   // Remove existing button styles if present
@@ -1123,6 +1372,8 @@ function injectButtonStyles(html) {
 
   const generateButtonCSS = (selector, config) => {
     let background = '';
+    
+    // ⭐ FIX: Handle outlined style with proper border
     if (config.backgroundType === 'solid') {
       background = `background: ${config.backgroundColor} !important;`;
     } else if (config.backgroundType === 'gradient') {
@@ -1131,26 +1382,44 @@ function injectButtonStyles(html) {
       background = `background: transparent !important;`;
     }
 
-    // Button size calculations
-    let minWidth = '120px';
-    let height = 'auto';
-    if (config.buttonSize === 'small') {
-      minWidth = '80px';
-    } else if (config.buttonSize === 'medium') {
-      minWidth = '120px';
-    } else if (config.buttonSize === 'large') {
-      minWidth = '160px';
-    }
+    // ⭐ FIX: Apply border thickness - at least 2px for outlined
+    const borderThickness = config.backgroundType === 'outlined' 
+      ? Math.max(2, config.borderThickness) 
+      : config.borderThickness;
 
-    let baseStyles = `
+// ⭐ FIX: Button size calculations - DIFFERENT padding for each size
+let minWidth = '120px';
+let paddingY = config.paddingY;
+let paddingX = config.paddingX;
+
+if (config.buttonSize === 'small') {
+  minWidth = '80px';
+  // Small: Reduce padding significantly regardless of user setting
+  paddingY = Math.min(8, config.paddingY * 0.6);
+  paddingX = Math.min(16, config.paddingX * 0.7);
+} else if (config.buttonSize === 'medium') {
+  minWidth = '120px';
+  // Medium: Use 80% of user settings
+  paddingY = config.paddingY * 0.85;
+  paddingX = config.paddingX * 0.85;
+} else if (config.buttonSize === 'large') {
+  minWidth = '160px';
+  // Large: Increase padding
+  paddingY = config.paddingY * 1.3;
+  paddingX = config.paddingX * 1.4;
+}
+
+let baseStyles = `
 ${selector} {
   ${background}
   color: ${config.textColor} !important;
   border-radius: ${config.borderRadius}px !important;
-  border: ${config.borderThickness}px solid ${config.borderColor} !important;
+  border: ${borderThickness}px solid ${config.borderColor} !important;
   font-size: ${config.fontSize}px !important;
-  padding: ${config.paddingY}px ${config.paddingX}px !important;
+  padding: ${paddingY}px ${paddingX}px !important;
   min-width: ${minWidth} !important;
+  height: auto !important;
+  line-height: 1.5 !important;
   transition: all 0.2s ease !important;
   cursor: pointer !important;
   box-sizing: border-box !important;
@@ -1329,6 +1598,51 @@ function formatTime(timestamp) {
 }
 
 function undoHistoryItem(item) {
+  // Handle logo URL removal - cascade to remove all logo-related history
+  if (item.type === 'logo_url') {
+    // Remove ALL logo-related history items (url, size, position)
+    const logoTypes = ['logo_url', 'logo_size', 'logo_position'];
+    
+    // Get the original URL value
+    const urlItems = store.history.filter(h => h.type === 'logo_url');
+    const oldestUrlItem = urlItems[urlItems.length - 1];
+    const originalUrl = oldestUrlItem ? oldestUrlItem.oldValue : '';
+    
+    // Remove all logo-related history
+    store.history = store.history.filter(h => !logoTypes.includes(h.type));
+    
+    // Revert all logo settings to original state
+    store.revertChange(() => {
+      store.logoConfig.url = originalUrl || '';
+      // Also reset size and position to defaults when URL is removed
+      if (!originalUrl) {
+        store.logoConfig.size = 'medium';
+        store.logoConfig.position = 'TL';
+      }
+    });
+    
+    return;
+  }
+  
+  // For other logo changes (size, position), only remove that specific type
+  if (item.type === 'logo_size' || item.type === 'logo_position') {
+    const itemsToRemove = store.history.filter(h => h.type === item.type);
+    const oldestItem = itemsToRemove[itemsToRemove.length - 1];
+    const originalValue = oldestItem.oldValue;
+    
+    store.history = store.history.filter(h => h.type !== item.type);
+    
+    store.revertChange(() => {
+      if (item.type === 'logo_size') {
+        store.logoConfig.size = originalValue || 'medium';
+      } else if (item.type === 'logo_position') {
+        store.logoConfig.position = originalValue || 'TL';
+      }
+    });
+    
+    return;
+  }
+  
   // Find all history items of this type
   const itemsToRemove = store.history.filter(h => h.type === item.type);
 
@@ -1343,14 +1657,6 @@ function undoHistoryItem(item) {
   store.revertChange(() => {
     if (item.type === 'logo_enabled') {
       store.logoConfig.enabled = originalValue;
-    } else if (item.type === 'logo_url') {
-      store.logoConfig.url = originalValue || '';
-    } else if (item.type === 'logo_size') {
-      store.logoConfig.size = originalValue || 'small';
-    } else if (item.type === 'logo_position') {
-      store.logoConfig.position = originalValue || 'TL';
-    } else if (item.type === 'header_enabled') {
-      store.headerConfig.headerEnabled = originalValue;
     } else if (item.type.startsWith('header_')) {
       // Handle header properties
       const property = item.type.substring(7); // Remove 'header_' prefix

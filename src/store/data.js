@@ -23,17 +23,17 @@ export const useDataStore = defineStore("data", () => {
     headerExistsInOriginal: false, // ⭐ NEW: Track if header existed in original HTML
     backgroundType: "",
     backgroundColor: "",
-    gradientFrom: "",
-    gradientTo: "",
+    gradientFrom: "#22c55e",
+    gradientTo: "#16a34a",
     gradientAngle: 135,
-    textColor: "",
+    textColor: "#ffff",
     fontSize: 22,
     fontWeight: "",
     fontFamily: "",
     padding: 40,
     subheaderEnabled: false,
     subheaderText: "",
-    subheaderTextColor: "",
+    subheaderTextColor: "#000000",
     subheaderFontSize: 14,
     subheaderFontWeight: "",
     subheaderFontFamily: "",
@@ -401,7 +401,11 @@ export const useDataStore = defineStore("data", () => {
 
 
   function initializeHeaderStylesFromTheme(themeName) {
+    console.log('=== initializeHeaderStylesFromTheme called ===');
+    console.log('Theme name:', themeName);
+
     if (!themeName || themeName === 'custom') {
+      console.log('Skipping: no theme or custom theme');
       return;
     }
 
@@ -409,13 +413,19 @@ export const useDataStore = defineStore("data", () => {
 
     try {
       const themeStyles = parseThemeHeaderStyles(themeName);
+      console.log('Parsed header theme styles:', themeStyles);
 
       if (themeStyles && Object.keys(themeStyles).length > 0) {
+        // ⭐ Force update ALL properties
         Object.keys(themeStyles).forEach(key => {
-          if (themeStyles[key] !== undefined && themeStyles[key] !== null) {
-            headerConfig[key] = themeStyles[key];
+          const value = themeStyles[key];
+          if (value !== undefined && value !== null) {
+            console.log(`Setting headerConfig.${key} = ${value}`);
+            headerConfig[key] = value;
           }
         });
+
+        console.log('Final header config after theme initialization:', JSON.parse(JSON.stringify(headerConfig)));
       }
     } catch (err) {
       console.error('Failed to initialize header styles from theme:', err);
@@ -434,6 +444,7 @@ export const useDataStore = defineStore("data", () => {
         textColor: '#111827',
         fontSize: 22,
         fontWeight: '600',
+        fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
         padding: 20,
       },
       'bold-gradient': {
@@ -444,6 +455,7 @@ export const useDataStore = defineStore("data", () => {
         textColor: '#ffffff',
         fontSize: 24,
         fontWeight: '700',
+        fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
         padding: 18,
       },
       'nature-organic': {
@@ -452,6 +464,7 @@ export const useDataStore = defineStore("data", () => {
         textColor: '#ffffff',
         fontSize: 22,
         fontWeight: '600',
+        fontFamily: "'Georgia', serif",
         padding: 16,
       },
       'tech-dark': {
@@ -460,6 +473,7 @@ export const useDataStore = defineStore("data", () => {
         textColor: '#ffffff',
         fontSize: 22,
         fontWeight: '600',
+        fontFamily: "'Courier New', monospace",
         padding: 16,
       },
       'corporate-professional': {
@@ -468,6 +482,7 @@ export const useDataStore = defineStore("data", () => {
         textColor: '#ffffff',
         fontSize: 22,
         fontWeight: '600',
+        fontFamily: "'Times New Roman', serif",
         padding: 16,
       },
     };
@@ -744,14 +759,6 @@ export const useDataStore = defineStore("data", () => {
 
     return themeDefaults[themeName] || {};
   }
-
-  // Watch for theme changes
-  watch(selectedTheme, (newTheme) => {
-    if (newTheme && newTheme !== 'custom') {
-      initializeButtonStylesFromTheme(newTheme);
-      initializeFormStylesFromTheme(newTheme);
-    }
-  });
 
   watch(rawHTML, (newHTML) => {
     console.log('=== rawHTML watcher triggered ===');

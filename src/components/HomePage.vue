@@ -1,129 +1,89 @@
 <template>
-  <!-- Header -->
-  <header class="h-16 flex items-center justify-between
-         px-4 md:px-6 bg-white border-b border-gray-200">
-    <!-- Left section -->
-    <div class="flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl bg-green-500 flex items-center justify-center">
-        <i class="fa fa-th-large text-white text-sm"></i>
+<div class="flex min-h-screen flex-col bg-white font-sans lg:flex-row">
+  <div class="flex flex-col bg-white lg:w-[45%]">
+    <div class="px-8 pb-6 pt-12 md:px-8 lg:px-8">
+      <div class="flex items-center gap-2 border-b pb-4">
+        <img src="../assets/image.png" height="100px" />
       </div>
-      <span class="text-lg font-semibold text-gray-900">
-        Zoho Designer
-      </span>
     </div>
 
-    <!-- Help Button -->
-    <a href="https://help.zoho.com/portal/en/kb/crm/connect-with-customers/webforms/articles/web-forms-introduction" target="_blank">
-      <button class="flex items-center gap-2 px-1 md:px-2 md:py-2 py-1 rounded-full
-           border border-gray-300 text-sm text-gray-800
-           hover:bg-gray-100 transition">
-        <!-- Icon always visible -->
-        <span class="w-8 h-8 md:w-5 md:h-5 flex items-center justify-center
-             rounded-full text-xs">
-          <i class="fa fa-question"></i>
-        </span>
+    <div class="flex flex-col px-8 py-4 md:px-8 lg:px-8">
+      <div class="max-w-xl">
+        <h1 class="mb-6 text-2xl font-bold text-gray-900 lg:text-2xl">Give your webform your brand's look</h1>
+        <p class="mb-10 text-sm leading-relaxed text-gray-500">With Formz Studio, you can transform standard Zoho webforms into on-brand, professional forms using a powerful visual editor without modifying the underlying logic.</p>
 
-        <!-- Text only on desktop -->
-        <span class="hidden md:inline">
-          Help
-        </span>
-      </button>
-    </a>
-  </header>
-
-  <!-- Main Section -->
-  <section class="bg-gray-50 py-10 md:py-16 px-4">
-    <!-- Heading -->
-    <div class="text-center mb-8 md:mb-10">
-      <h1 class="text-2xl md:text-4xl font-bold text-gray-900">
-        Zoho Webform Designer
-      </h1>
-      <p class="mt-3 text-base md:text-lg text-gray-600">
-        Visually customize your Zoho CRM webforms without touching the logic.
-      </p>
-    </div>
-
-    <!-- Card -->
-    <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm
-             border border-gray-200 overflow-hidden">
-      <!-- Card Header -->
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between
-               px-4 md:px-6 py-4 border-b border-gray-200 bg-gray-50 gap-3">
-        <!-- Mac dots -->
-        <div class="flex gap-2">
-          <span class="w-3 h-3 rounded-full bg-red-500"></span>
-          <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
-          <span class="w-3 h-3 rounded-full bg-green-500"></span>
-        </div>
-
-        <!-- Help link -->
-        <a href="https://help.zoho.com/portal/en/kb/crm/connect-with-customers/webforms/articles/set-up-web-forms" target="_blank" class="flex items-center gap-2 text-sm text-green-600 hover:underline">
-          <i class="fa fa-external-link-alt text-xs"></i>
-          Where do I find this code?
-        </a>
-      </div>
-
-      <!-- Card Body -->
-      <div class="p-4 md:p-8">
-        <h3 class="text-lg font-semibold text-gray-900">
-          Paste Zoho CRM HTML
-        </h3>
-
-        <p class="mt-1 text-sm text-gray-600">
-          Copy the full HTML code provided by Zoho CRM's webform setup wizard
-          and paste it below.
-        </p>
-
-        <!-- Textarea -->
-        <div class="mt-4 md:mt-6">
-          <textarea v-model="htmlInput" rows="8" placeholder="<!-- Paste your full Zoho CRM webform code here -->"
-            class="w-full rounded-lg border-2 border-green-500
-                   p-3 md:p-4 text-sm font-mono text-gray-800
-                   placeholder-gray-400 focus:outline-none
-                   focus:ring-2 focus:ring-green-200">
-          </textarea>
-        </div>
-
-        <!-- Footer -->
-        <div class="mt-6 flex flex-col md:flex-row md:items-center
-                 md:justify-between gap-4">
-          <!-- Privacy note -->
-          <div class="flex items-center gap-2 text-sm text-gray-600">
-            <i class="fa fa-shield-alt text-green-600 mt-0.5"></i>
-            <p>
-              <span class="font-medium">Privacy Note:</span>
-              Code is processed locally in your browser.
-              We never store your form data or logic.
-            </p>
+        <div class="group relative mb-12 flex aspect-video cursor-pointer items-center justify-center rounded-sm bg-[#E5E7EB]">
+          <div class="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-sm transition group-hover:scale-105">
+            <svg class="ml-1 h-6 w-6 fill-current text-gray-400" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
           </div>
+        </div>
 
-          <!-- CTA Button -->
-          <button @click="goToThemes" :disabled="!htmlInput.trim()" :class="[
-            'w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold transition',
-            htmlInput.trim()
-              ? 'bg-green-600 text-white hover:bg-green-700'
-              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-          ]">
-            Next
-            <i class="fa fa-arrow-right"></i>
-          </button>
+        <div class="mb-8 h-[1px] w-full bg-gray-100"></div>
+
+        <div class="flex flex-col gap-4">
+          <div class="flex items-start gap-3">
+            <svg class="mt-1 h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" stroke-width="2" />
+              <path stroke-width="2" d="M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14" />
+            </svg>
+            <div>
+              <h3 class="font-bold text-gray-900">Having trouble ?</h3>
+              <p class="text-sm text-gray-500">Feel free to contact us and we will guide you through the tool</p>
+            </div>
+          </div>
+          <button class="w-fit rounded-md border border-gray-300 px-6 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-50">Contact us</button>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <div class="flex items-center justify-center bg-[#D1D5DB] p-4 lg:w-[55%] lg:p-8">
+    <div class="flex w-full max-w-2xl flex-col gap-4">
+      <div class="overflow-hidden rounded-2xl bg-white shadow-xl">
+        <div class="flex items-center justify-between border-b border-gray-100 bg-white px-5 py-3">
+          <div class="flex gap-2">
+            <span class="h-3 w-3 rounded-full bg-[#FF5F57]"></span>
+            <span class="h-3 w-3 rounded-full bg-[#FFBD2E]"></span>
+            <span class="h-3 w-3 rounded-full bg-[#28CA42]"></span>
+          </div>
+          <a href="#" class="flex items-center gap-1 rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs text-gray-500"> <span class="font-bold">?</span> help </a>
+        </div>
+
+        <div class="p-6">
+          <textarea v-model="htmlInput" class="h-80 w-full resize-none border-none p-2 font-mono text-sm text-gray-400 placeholder-gray-400 focus:outline-none lg:h-[450px]" placeholder="<!--Paste your Zoho CRM Webform code here-->"></textarea>
+        </div>
+      </div>
+
+      <button @click="goToThemes" :disabled="!htmlInput.trim()" class="flex w-full items-center justify-center gap-2 rounded-xl py-5 text-lg font-bold shadow-lg transition" :class="htmlInput.trim() ? 'bg-[#0070C1] text-white' : 'bg-[#0070C1] text-white opacity-90'">
+        <svg class="h-5 w-5 rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path d="M12 19l9 2-2-9-9-9-9 9 2 9 9-2zm0 0l-1-1" />
+        </svg>
+        Start Designing
+      </button>
+
+      <div class="flex items-start gap-3 rounded-lg border border-[#BFDBFE] bg-[#EBF5FF] p-4">
+        <div class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#0070C1] text-[10px] font-bold text-white">i</div>
+        <p class="text-xs leading-snug text-[#1E40AF]">All code you paste is processed locally in your browser, we don't store your data or logic anywhere in the system.</p>
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-import { useDataStore } from "../store/data";
 
-const dataStore = useDataStore();
-const htmlInput = ref(dataStore.rawHTML || '');
+<script setup>
+import { ref } from 'vue'
+import { useDataStore } from '../store/data'
+
+const dataStore = useDataStore()
+const htmlInput = ref(dataStore.rawHTML || '')
 
 function goToThemes() {
   if (htmlInput.value.trim()) {
-    dataStore.rawHTML = htmlInput.value;
-    dataStore.goTo('theme');
+    dataStore.rawHTML = htmlInput.value
+    dataStore.goTo('theme')
   }
 }
 </script>
